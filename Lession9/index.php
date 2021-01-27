@@ -41,7 +41,7 @@
 			break;
 		case 'post':
 			require_once('controllers/PostController.php');
-			$controller_obj = new UserController();
+			$controller_obj = new PostController();
 			switch ($act) {
 				case 'list':
 					$controller_obj->list();

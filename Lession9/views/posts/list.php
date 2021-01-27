@@ -51,7 +51,7 @@
                 <td>
                     <a href="index.php?mod=post&act=detail&id=<?php echo $value['id']?>&category_id=<?php echo $value['category_id']?>&user_id=<?php echo $value['user_id']?>" class="btn btn-primary">Detail</a>
                     <a href="index.php?mod=post&act=edit&id=<?php echo $value['id']?>" class="btn btn-success">Edit</a>
-                    <a href="index.php?mod=post&act=edit&id=<?php echo $value['id']?>" class="btn btn-danger">Delete</a>
+                    <a href="index.php?mod=post&act=delete&id=<?php echo $value['id']?>" class="btn btn-danger">Delete</a>
                 </td>
                 </tr>
             <?php } ?>  

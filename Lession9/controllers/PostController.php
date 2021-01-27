@@ -1,9 +1,9 @@
 <?php 
-require_once('models/User.php');
+require_once('models/Post.php');
 	class PostController
 	{
 		public function list(){
-			$post = new User();
+			$post = new Post();
 			$posts = $post->getList();
 			require_once('views/posts/list.php');
 		}
@@ -16,9 +16,14 @@ require_once('models/User.php');
 			 $data = $_POST;
 			 $data_insert = [
 		    	'id' => $data['id'],
-		      	'name' => $data['name'],
-		    	'password' => $data['password'],
-		    	'avatar' => $data['avatar'],
+		      'title' => $data['title'],
+		    	'description' => $data['description'],
+		    	'thumbnail' => $data['thumbnail'],
+		    	'content' => $data['content'],
+		      'slug' => $data['slug'],
+		      'view_count' => $data['view_count'],
+		      'category_id' => $data['category_id'],
+		      'user_id' => $data['user_id'],
 		      'created_at' => $data['created_at']
 		    ];
 		    $post = new Post();
@@ -37,10 +42,14 @@ require_once('models/User.php');
 		public function update(){
 			$data = $_POST;
 			$data_insert = [
-				'name' => $data['name'],
-				'email' => $data['email'],
-				'password' => $data['password'],
-				'avatar' => $data['avatar'],
+				'title' => $data['title'],
+				'description' => $data['description'],
+				'thumbnail' => $data['thumbnail'],
+				'content' => $data['content'],
+				'slug' => $data['slug'],
+				'view_count' => $data['view_count'],
+				'category_id' => $data['category_id'],
+				'user_id' => $data['user_id'],
 				'created_at' => $data['created_at']
 			];
 			$post= new Post();
@@ -52,13 +61,21 @@ require_once('models/User.php');
 		}
 		public function detail(){
 			$id = $_GET['id'];
-			$post_obj = new Post();
+			$category_id = $_GET['category_id'];
+			$user_id = $_GET['user_id'];
+
+		    $post_obj = new Post();
 			$post = $post_obj->find($id);
+
+			$category_obj = new Post();
+			$category_name = $category_obj->findC($category_id );
+			$user_obj = new Post();
+			$user_name = $category_obj->findU($user_id );
 			require_once('views/posts/detail.php');
 		}
 		public function delte(){
 			$id = $_GET['id'];
-			$post_obj = new  User();
+			$post_obj = new  Post();
 			$post = $post_obj->del($id);
 			if ($post == true) {
 				setcookie('delete',"Xóa một mục thành công", time()+2);

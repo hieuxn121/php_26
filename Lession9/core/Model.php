@@ -83,6 +83,6 @@ class Model {
 		$result = $this->conn->query($query);
 		$row = $result->fetch_assoc();
 		return $row;
-	}
+		}
 	}
  ?>
